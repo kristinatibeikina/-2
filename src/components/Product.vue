@@ -14,7 +14,7 @@
               <div class="content">
                 <p>{{product.description}}</p>
                 <h4>${{ product.price}}</h4>
-                <a href="#">Read More</a>
+                <button type="submit" @click="addCard(product.id)">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -43,8 +43,17 @@ export default {
       const result = await response.json();
       this.inCard=result.data
       console.log('Result: ', result)
+    },
+    async addCard(id){
+      this.product_id=id
+      const response = await fetch(this.url + /cart/+ this.product_id,{
+        method: 'POST'
+      });
+      const result = await response.json();
+      console.log('Result: ', result)
     }
-  }
+  },
+
 
 };
 </script>

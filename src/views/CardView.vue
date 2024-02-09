@@ -9,9 +9,10 @@ export default {
 
     }
   },
-  methods:{
+  methods: {
 
-},
+  }
+}
 
 </script>
 <style>
