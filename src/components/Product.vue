@@ -1,6 +1,6 @@
 <template>
   <div id="app" class=" my-5">
-    <h1 @click="getProduct" class="catalog">Каталог товаров</h1>
+    <h1 class="catalog">Каталог товаров</h1>
     <div class="row">
       <div class="col-md-3" v-for="product in inCard">
         <div class="container">
@@ -14,7 +14,7 @@
               <div class="content">
                 <p>{{product.description}}</p>
                 <h4>${{ product.price}}</h4>
-                <button type="submit" @click="addCard(product.id)">Add to Cart</button>
+                <button type="submit" @click="addCard(product)">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -28,33 +28,59 @@ export default {
   name: 'app',
   data() {
     return {
-      url: 'https://jurapro.bhuser.ru/api-shop',
+      url:'https://jurapro.bhuser.ru/api-shop',
+      cart:[],
       inCard: [],
+
     };
+
+  },
+  created() {
+    this.getProduct()
   },
   methods: {
-    async getProduct(){
-      const response = await fetch(this.url + '/products',{
+    async getProduct() {
+      const response = await fetch(this.url + '/products', {
         method: 'GET',
-        headers:{
+        headers: {
           'content-type': 'application/json',
         },
       });
       const result = await response.json();
-      this.inCard=result.data
+      this.inCard = result.data
       console.log('Result: ', result)
     },
-    async addCard(id){
-      this.product_id=id
-      const response = await fetch(this.url + /cart/+ this.product_id,{
-        method: 'POST'
-      });
-      const result = await response.json();
-      console.log('Result: ', result)
-    }
-  },
+    async addCard(product) {
+      const productId = product.id;
+      const url = `https://jurapro.bhuser.ru/api-shop/cart/${productId}`;
+      const userToken = localStorage.getItem('userToken');
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${userToken}`
+          }
+        });
+        if (response.ok) {
+          const existingItemIndex = this.cart.find(item => item.id === product.id);
+          if (existingItemIndex){
+            existingItemIndex.quantity++;
+          } else {
+            this.cart.push({...product, quantity: 1});
+          }
+          const data = await response.json();
+          console.log(data.data.message);
+        } else {
+          console.error("Ошибка добавления товара в корзину:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Ошибка добавления товара в корзину:", error);
+      }
+    },
 
 
+  }
 };
 </script>
 <style>
@@ -86,7 +112,7 @@ body{
 }
 h4{
   margin-top: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 5px;
 }
 .container .card .face{
   width: 300px;

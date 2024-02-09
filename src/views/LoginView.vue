@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <h1 class="catalog">Авторизация</h1>
-    <form @submit.prevent="login()"><br>
+    <form @submit.prevent="login"><br>
       Email <input v-model="email"><br>
       Password <input v-model="password"><br>
       <button type="submit">Отправить</button>
@@ -24,7 +24,6 @@ export default {
         email: this.email,
         password: this.password
       }
-      try{
         const response = await fetch(this.url + '/login',{
           method: 'POST',
           headers:{
@@ -32,12 +31,13 @@ export default {
           },
           body: JSON.stringify(User)
         })
-
+      if(response.ok){
         const result = await response.json();
+        localStorage.setItem('userToken', result.data.user_token)
         console.log('Result: ', result)
         console.log('Response: ', response);
         this.$router.push('/')
-      }catch (error){
+      }else{
         console.error('Custom error', error)
         alert('Не правильная почта или пароль')
       }
