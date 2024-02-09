@@ -1,11 +1,16 @@
 <template>
   <nav>
     <router-link to="/" class="p">Каталог товаров</router-link> |
+    <span v-if="!isAuthenticated">
     <router-link to="/registration" class="p">Регистрация</router-link> |
     <router-link to="/login" class="p">Авторизация</router-link> |
+    </span>
+    <span v-if="isAuthenticated">
     <router-link to="/card" class="p">Корзина</router-link> |
     <router-link to="/arrange" class="p">Оформленные заказы</router-link> |
-    <router-link to="/" class="p" @click="logoutUser">Выход</router-link> |
+      <router-link to="/" class="p" @click="logoutUser">Выход</router-link> |
+    </span>
+
 
   </nav>
   <router-view/>
@@ -20,6 +25,11 @@ export default {
       url: 'https://jurapro.bhuser.ru/api-shop',
       count:0
     };
+  },
+  computed: {
+    isAuthenticated() {
+      return !!localStorage.getItem('userToken');
+    }
   },
   methods: {
     async logoutUser(){
