@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegistrationView from '../views/RegistrationView.vue'
 import CardView from '../views/CardView.vue'
+import ArrangeView from '../views/ArrangeView.vue'
 const routes = [
   {
     path: '/', name: 'home', component: HomeView
@@ -18,6 +19,9 @@ const routes = [
   },
   {
     path: '/card', name: 'card',component: CardView
+  },
+  {
+    path: '/arrange', name: 'arrange',component: ArrangeView
   },
 ]
 

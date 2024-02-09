@@ -39,7 +39,7 @@ export default {
     this.getProduct()
   },
   methods: {
-    async getProduct() {
+    async getProduct() { //Отображение карточек
       const response = await fetch(this.url + '/products', {
         method: 'GET',
         headers: {

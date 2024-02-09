@@ -4,6 +4,7 @@
     <router-link to="/registration" class="p">Регистрация</router-link> |
     <router-link to="/login" class="p">Авторизация</router-link> |
     <router-link to="/card" class="p">Корзина</router-link> |
+    <router-link to="/arrange" class="p">Оформленные заказы</router-link> |
     <router-link to="/" class="p" @click="logoutUser">Выход</router-link> |
 
   </nav>
@@ -46,6 +47,7 @@ export default {
 }
 
 nav {
+
   padding: 30px;
 }
 
