@@ -14,7 +14,7 @@
               <div class="content">
                 <p>{{product.description}}</p>
                 <h4>${{ product.price}}</h4>
-                <button type="submit" @click="addCard(product)">Add to Cart</button>
+                <button type="submit" @click="addCard(product);countCart++">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@ export default {
       url:'https://jurapro.bhuser.ru/api-shop',
       cart:[],
       inCard: [],
-
+      countCart:0,
     };
 
   },

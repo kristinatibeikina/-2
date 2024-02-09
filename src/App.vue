@@ -5,14 +5,19 @@
     <router-link to="/login" class="p">Авторизация</router-link> |
     <router-link to="/card" class="p">Корзина</router-link> |
     <router-link to="/" class="p" @click="logoutUser">Выход</router-link> |
+
   </nav>
   <router-view/>
 </template>
 <script >
+import Product from "@/components/Product.vue";
+
 export default {
+
   data() {
     return {
       url: 'https://jurapro.bhuser.ru/api-shop',
+      count:0
     };
   },
   methods: {
@@ -24,7 +29,8 @@ export default {
       this.$router.push('/');
       const result = await response.json();
       console.log('message: ', result)
-    }
+    },
+
   }
 }
 </script>
