@@ -35,8 +35,12 @@ export default {
     async logoutUser(){
       const response = await fetch(this.url + '/logout',{
         method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        },
       });
       localStorage.removeItem('userToken');
+      location.reload();
       this.$router.push('/');
       const result = await response.json();
       console.log('message: ', result)

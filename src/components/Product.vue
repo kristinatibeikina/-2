@@ -12,9 +12,11 @@
             </div>
             <div class="face face2">
               <div class="content">
-                <p>{{product.description}}</p>
+                <p class="description">{{product.description}}</p>
                 <h4>${{ product.price}}</h4>
-                <button type="submit" v-if="isAuthenticated" @click="addCard(product)">Add to Cart</button>
+                <div class="button-panel">
+                  <input type="submit" class="button button-card" v-if="isAuthenticated" @click="addCard(product)" title="Sign In" value="Добавить">
+                </div>
               </div>
             </div>
           </div>
@@ -110,10 +112,20 @@ body{
   display: flex;
   justify-content: space-between;
 }
-
+.description{
+  display: inline-block;
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
 .container .card{
   position: relative;
   cursor: pointer;
+}
+.button-card{
+  margin-top: -20px;
 }
 h4{
   margin-top: 5px;
@@ -121,7 +133,7 @@ h4{
 }
 .container .card .face{
   width: 300px;
-  height: 200px;
+  height: 300px;
   transition: 0.5s;
 }
 .catalog{
@@ -134,7 +146,7 @@ h4{
   justify-content: center;
   align-items: center;
   z-index: 1;
-  transform: translateY(100px);
+  transform: translateY(200px);
 }
 
 .container .card:hover .face.face1{
@@ -151,9 +163,6 @@ h4{
   opacity: 1;
 }
 
-.container .card .face.face1 .content img{
-  max-width: 100px;
-}
 
 .container .card .face.face1 .content h3{
   margin: 10px 0 0;

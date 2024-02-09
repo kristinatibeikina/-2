@@ -42,6 +42,7 @@ export default {
           body: JSON.stringify(User)
         })
       if(response.ok){
+
         const result = await response.json();
         localStorage.setItem('userToken', result.data.user_token)
         console.log('Result: ', result)

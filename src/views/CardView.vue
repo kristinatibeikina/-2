@@ -4,7 +4,7 @@
     <div class="col-md-3" v-for="product in cart ">
       <div class="container">
         <div class="card">
-          <div class="face face1 face3 f">
+          <div class="face face1 face3 fo">
             <div class="content">
               <h3>{{ product.name }}</h3>
             </div>
@@ -127,7 +127,7 @@ export default {
   height: 400px;
   transition: 0.5s;
 }
-.container .card .face.f{
+.container .card .face.fo{
   transform: translateY(300px);
   transition: 0.5s;
 }

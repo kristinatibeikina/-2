@@ -5,7 +5,7 @@
     <form @submit.prevent="registration">
       <div class="form-item">
         <label for="FIO"></label>
-        <input type="text" v-model="email" class="input" name="email" required="required" placeholder="Email Address">
+        <input type="text" v-model="FIO" class="input" name="email" required="required" placeholder="FIO">
       </div>
       <div class="form-item">
         <label for="email"></label>
