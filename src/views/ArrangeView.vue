@@ -6,13 +6,13 @@
         <div class="card">
           <div class="face face1">
             <div class="content">
-              <h3>{{ product.name }}</h3>
+              <h3>{{ product.id }}</h3>
             </div>
           </div>
           <div class="face face2">
             <div class="content">
-              <p>{{product.description}}</p>
-              <h4>${{ product.price}}</h4>
+              <p>{{product.products}}</p>
+              <h4>${{ product.order_price}}</h4>
             </div>
           </div>
         </div>

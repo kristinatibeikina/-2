@@ -7,7 +7,7 @@
       Password <input v-model="password"><br>
       <button type="submit">Отправить</button>
     </form>
-
+    <router-link to="/" class="p">Назад</router-link> |
   </div>
 </template>
 <script>
