@@ -1,6 +1,6 @@
 <template>
-  <div id="app" class="container my-5">
-    <h1 @click="getProduct">Каталог товаров</h1>
+  <div id="app" class=" my-5">
+    <h1 @click="getProduct" class="catalog">Каталог товаров</h1>
     <div class="row">
       <div class="col-md-3" v-for="product in inCard">
         <div class="container">
@@ -13,7 +13,7 @@
             <div class="face face2">
               <div class="content">
                 <p>{{product.description}}</p>
-                <p>{{ product.price}}</p>
+                <h4>${{ product.price}}</h4>
                 <a href="#">Read More</a>
               </div>
             </div>
@@ -62,6 +62,7 @@ body{
 .row{
   display: grid;
   grid-template-columns: repeat(3, 400px);
+  margin-left: 60px;
 }
 .container{
   width: 1000px;
@@ -74,13 +75,18 @@ body{
   position: relative;
   cursor: pointer;
 }
-
+h4{
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
 .container .card .face{
   width: 300px;
   height: 200px;
   transition: 0.5s;
 }
-
+.catalog{
+  color: #ff00a9;
+}
 .container .card .face.face1{
   position: relative;
   background: #333;
@@ -92,7 +98,7 @@ body{
 }
 
 .container .card:hover .face.face1{
-  background: #ff0057;
+  background: #ff00a9;
   transform: translateY(0);
 }
 

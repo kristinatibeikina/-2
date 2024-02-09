@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h1>Регистрация</h1>
+    <h1 class="catalog">Регистрация</h1>
     <form @submit.prevent="registration"><br>
       FIO <input v-model="FIO"><br>
       Email <input v-model="email"><br>
@@ -35,10 +35,12 @@ export default {
         },
         body: JSON.stringify(User)
       });
-      console.log('Response: ', response);
-      const result = await response.json();
-      console.log('Result: ', result)
-      this.$router.push('/login')
+      if (response.ok) {
+        this.$router.push('/login'); // Перенаправляем пользователя на авторизацию
+      } else {
+        this.error = "Ошибка при регистрации";
+        console.error('Ошибка:', this.error);
+      }
 
     }
   }
@@ -46,3 +48,8 @@ export default {
 
 
 </script>
+<style>
+.catalog{
+  color: #ff00a9;
+}
+</style>

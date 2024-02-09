@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h1>Авторизация</h1>
+    <h1 class="catalog">Авторизация</h1>
     <form @submit.prevent="login()"><br>
       Email <input v-model="email"><br>
       Password <input v-model="password"><br>
@@ -39,7 +39,7 @@ export default {
         this.$router.push('/')
       }catch (error){
         console.error('Custom error', error)
-
+        alert('Не правильная почта или пароль')
       }
 
     }
@@ -47,3 +47,8 @@ export default {
 }
 
 </script>
+<style>
+.catalog{
+  color: #ff00a9;
+}
+</style>
