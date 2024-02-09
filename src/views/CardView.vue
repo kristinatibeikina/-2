@@ -13,6 +13,7 @@
             <div class="content">
               <p>{{product.description}}</p>
               <h4>${{ product.price}}</h4>
+              <button type="submit" @click="deleteCard(product)">Удалить</button>
             </div>
           </div>
         </div>
@@ -32,6 +33,28 @@ export default {
     this.viewCard()
   },
   methods: {
+    async deleteCard(product){
+      const userToken = localStorage.getItem('userToken');
+      const url = `https://jurapro.bhuser.ru/api-shop/cart/${product.id}`;
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${userToken}`
+        }
+      });
+      if (response.ok) {
+        alert("Товар успешно удален!")
+        console.log("Товар успешно удален!");
+        location.reload();
+        const data = await response.json();
+        console.log(data.data.message);
+      } else {
+        console.error("Ошибка удаления товара из корзины:", response.statusText);
+      }
+
+    },
+
       async viewCard(){
         const userToken = localStorage.getItem('userToken');
         const response = await fetch(this.url + '/cart',{
